@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'bilyeoapp.apps.BilyeoappConfig',
 ]
 
 MIDDLEWARE = [
@@ -69,21 +71,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BilyeoProject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'billyeodb',
         'USER': 'admin',
         'PASSWORD' : '123456789',
         'HOST' : 'database-1.cx13lmsqnav9.us-east-2.rds.amazonaws.com',
         'PORT' : '3306',
+=======
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : 'bilyeo',
+        'USER' : 'admin',
+        'PASSWORD' : '12345678',
+        'HOST' : 'bilyeo.c7q246exxvmt.ap-northeast-2.rds.amazonaws.com',
+        'PORT' : '3306',
+        #'OPTIONS' : {
+        #    'init_command' : 'SET sql_mode= "STRIC_TRANS_TABLES" '
+        #} 
+>>>>>>> c8a84094ad43fe969c35dee33e8cf5caac802346
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -122,3 +134,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+# 미디어 파일을 관리할 루트 media 디렉터리
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 각 media file에 대한 URL prefix
+MEDIA_URL = '/media/'
